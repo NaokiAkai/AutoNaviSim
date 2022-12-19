@@ -1,0 +1,18 @@
+#! /bin/bash
+
+set colors classic
+set grid
+set key top left
+set size ratio 1 1
+set xlabel "X [m]"
+set ylabel "Y [m]"
+set tics font "Arial, 14"
+set xlabel font "Arial, 14"
+set ylabel font "Arial, 14"
+
+plot "path.txt" lt -1 w l t "Path", \
+     "sim_result.txt" u 5:6 w l lt 3 lw 3 t "Estimate", \
+     "sim_result.txt" u 8:9 lt 2 lw 2 t "GNSS", \
+     "sim_result.txt" u 2:3 w l lt 1 lw 2 t "GT"
+
+pause -1
