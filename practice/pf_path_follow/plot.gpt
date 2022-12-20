@@ -1,18 +1,41 @@
 #! /bin/bash
 
+# 色の設定
 set colors classic
+
+# グリッドを表示
 set grid
+
+# キーの設定
 set key top left
-set size ratio 1 1
+set key font "Arial, 14"
+
+# ラベルの設定
 set xlabel "X [m]"
 set ylabel "Y [m]"
-set tics font "Arial, 14"
 set xlabel font "Arial, 14"
 set ylabel font "Arial, 14"
 
+# メモリの設定
+set xtics font "Arial, 14"
+set ytics font "Arial, 14"
+
+# アスペクト比の設定
+set size ratio 0.875 1
+
+# グラフの描画結果をpngに出力
+set terminal png
+set output "trajectories.png"
+
+# 描画
 plot "path.txt" lt -1 w l t "Path", \
-     "sim_result.txt" u 5:6 w l lt 3 lw 3 t "Estimate", \
      "sim_result.txt" u 8:9 lt 2 lw 2 t "GNSS", \
+     "sim_result.txt" u 5:6 w l lt 3 lw 3 t "Estimate", \
      "sim_result.txt" u 2:3 w l lt 1 lw 2 t "GT"
 
-pause -1
+# u: using
+# lt: line type
+# w l: with line
+# lw: line width
+# t: title
+
